@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Article from "../components/Article";
 
-test("renders a <article> element", () => {
+test("renders an <article> element", () => {
   const { container } = render(
     <Article
       title={"Components 101"}
@@ -21,7 +21,7 @@ test("renders a <h3> with the title of the post", () => {
       preview={"Setting up the building blocks of your site"}
     />
   );
-  const h3 = screen.queryByText(/Components 101/);
+  const h3 = screen.getByText(/Components 101/); // Changed to getByText
   expect(h3).toBeInTheDocument();
   expect(h3.tagName).toBe("H3");
 });
@@ -34,7 +34,7 @@ test("renders a <small> with the date of the post", () => {
       preview={"Setting up the building blocks of your site"}
     />
   );
-  const small = screen.queryByText(/December 15, 2020/);
+  const small = screen.getByText(/December 15, 2020/); // Changed to getByText
   expect(small).toBeInTheDocument();
   expect(small.tagName).toBe("SMALL");
 });
@@ -46,7 +46,7 @@ test("uses a default value for the date if no date is passed as a prop", () => {
       preview={"Setting up the building blocks of your site"}
     />
   );
-  const small = screen.queryByText(/January 1, 1970/);
+  const small = screen.getByText(/January 1, 1970/); // Changed to getByText
   expect(small).toBeInTheDocument();
 });
 
@@ -58,7 +58,7 @@ test("renders a <p> with the preview text", () => {
       preview={"Setting up the building blocks of your site"}
     />
   );
-  const p = screen.queryByText(/Setting up the building blocks of your site/);
+  const p = screen.getByText(/Setting up the building blocks of your site/); // Changed to getByText
   expect(p).toBeInTheDocument();
   expect(p.tagName).toBe("P");
 });

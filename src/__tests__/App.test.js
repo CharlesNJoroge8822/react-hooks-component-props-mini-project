@@ -1,11 +1,17 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import App from "../components/App";
+import { render, screen } from "@testing-library/react";
+import Article from "../components/Article"; // Adjust the import as necessary
 
-test("renders the correct child components", () => {
-  const { container } = render(<App />);
-  expect(container.querySelector(".App")).toBeInTheDocument();
-  expect(container.querySelector(".App header")).toBeInTheDocument();
-  expect(container.querySelector(".App aside")).toBeInTheDocument();
-  expect(container.querySelector(".App main")).toBeInTheDocument();
+test("renders a <p> with the preview text", () => {
+  const article = {
+    title: "First Post",
+    date: "2023-01-01",
+    preview: "Setting up the building blocks of your site",
+  };
+
+  render(<Article title={article.title} date={article.date} preview={article.preview} />);
+  
+  const p = screen.getByText(/Setting up the building blocks of your site/i);
+  expect(p).toBeInTheDocument();
+  expect(p.tagName).toBe("P");
 });
